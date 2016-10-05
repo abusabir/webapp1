@@ -5,15 +5,15 @@ package ru.abusabir.webapp;
  * 02.10.2016
  */
 public class Contact {
-    private final String type;
+    private final ContactType type;
     private final String value;
 
-    public Contact(String type, String value) {
+    public Contact(ContactType type, String value) {
         this.type = type;
         this.value = value;
     }
 
-    public String getType() {
+    public ContactType getType() {
         return type;
     }
 
