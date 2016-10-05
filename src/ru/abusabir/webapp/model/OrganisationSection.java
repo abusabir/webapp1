@@ -1,4 +1,4 @@
-package ru.abusabir.webapp;
+package ru.abusabir.webapp.model;
 
 import java.util.List;
 

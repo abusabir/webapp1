@@ -1,6 +1,4 @@
-package ru.abusabir.webapp;
-
-import java.util.List;
+package ru.abusabir.webapp.model;
 
 /**
  * Oleg
