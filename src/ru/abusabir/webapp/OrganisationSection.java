@@ -7,5 +7,5 @@ import java.util.List;
  * 02.10.2016
  */
 public class OrganisationSection extends Section {
-    private List<Organisation> organisationList;
+    private List<Organisation> values;
 }
