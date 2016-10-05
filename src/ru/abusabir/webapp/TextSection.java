@@ -1,11 +1,10 @@
 package ru.abusabir.webapp;
 
-import java.util.List;
-
 /**
  * Oleg
- * 02.10.2016
+ * 05.10.2016
  */
-public class TextSection extends Section {
-    private List<String> details;
+public class TextSection extends Section{
+    private String title;
+    private String comment;
 }

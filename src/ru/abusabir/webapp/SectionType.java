@@ -5,7 +5,7 @@ package ru.abusabir.webapp;
  * 02.10.2016
  */
 public enum SectionType {
-    POSITION,
+    OBJECTIVE,
     ACHIEVEMENT,
     QUALIFICATIONS,
     EXPERIENCE,
