@@ -71,7 +71,7 @@ public class ArrayStorage implements IStorage {
 
     @Override
     public Collection<Resume> getAllSorted() {
-        Arrays.sort(array, 0, size - 1);
+        Arrays.sort(array, 0, size);
         return Arrays.asList(Arrays.copyOf(array, size));
     }
 

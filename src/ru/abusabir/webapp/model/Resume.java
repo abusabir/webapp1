@@ -9,7 +9,7 @@ import java.util.UUID;
  * 30.09.2016
  */
 
-public class Resume {
+public class Resume implements Comparable<Resume>{
     private String uuid;
     private String fullName;
     private String location;
@@ -25,23 +25,6 @@ public class Resume {
         this.uuid = uuid;
         this.fullName = fullName;
         this.location = location;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Resume resume = (Resume) o;
-
-        if (!uuid.equals(resume.uuid)) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        return uuid.hashCode();
     }
 
     public void addSection(Section section) {
@@ -76,5 +59,54 @@ public class Resume {
 
     public List<Section> getSections() {
         return sections;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public void setHomePage(String homePage) {
+        this.homePage = homePage;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Resume resume = (Resume) o;
+
+        if (contacts != null ? !contacts.equals(resume.contacts) : resume.contacts != null) return false;
+        if (!fullName.equals(resume.fullName)) return false;
+        if (homePage != null ? !homePage.equals(resume.homePage) : resume.homePage != null) return false;
+        if (location != null ? !location.equals(resume.location) : resume.location != null) return false;
+        if (sections != null ? !sections.equals(resume.sections) : resume.sections != null) return false;
+        if (!uuid.equals(resume.uuid)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = uuid.hashCode();
+        result = 31 * result + fullName.hashCode();
+        result = 31 * result + (location != null ? location.hashCode() : 0);
+        result = 31 * result + (homePage != null ? homePage.hashCode() : 0);
+        result = 31 * result + (contacts != null ? contacts.hashCode() : 0);
+        result = 31 * result + (sections != null ? sections.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public int compareTo(Resume o) {
+        return fullName.compareTo(o.fullName);
     }
 }
