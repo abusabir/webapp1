@@ -11,7 +11,7 @@ import java.util.logging.Logger;
  * Oleg
  * 05.10.2016
  */
-public class ArrayStorage implements IStorage {
+public class ArrayStorage extends AbstractStorage {
     public static final int LIMIT = 100;
     //    protected Logger LOGGER = Logger.getLogger(getClass().getName());
     private static Logger LOGGER = Logger.getLogger(ArrayStorage.class.getName());
