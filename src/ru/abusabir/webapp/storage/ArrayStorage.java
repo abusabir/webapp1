@@ -3,7 +3,7 @@ package ru.abusabir.webapp.storage;
 import ru.abusabir.webapp.model.Resume;
 
 import java.util.Arrays;
-import java.util.Collection;
+import java.util.List;
 
 /**
  * Oleg
@@ -24,12 +24,6 @@ public class ArrayStorage extends AbstractStorage {
 
     @Override
     public void doSave(Resume r) {
-//            try {
-//                throw new WebAppException("Resume " + r.getUuid() + "already exist", r);
-//            } catch (WebAppException e) {
-//                LOGGER.log(Level.SEVERE, e.getMessage(), e);
-//            }
-
         array[size++] = r;
     }
 
@@ -55,8 +49,7 @@ public class ArrayStorage extends AbstractStorage {
     }
 
     @Override
-    public Collection<Resume> getAllSorted() {
-        Arrays.sort(array, 0, size);
+    public List<Resume> doGetAll() {
         return Arrays.asList(Arrays.copyOf(array, size));
     }
 
@@ -71,15 +64,9 @@ public class ArrayStorage extends AbstractStorage {
         return -1;
     }
 
-    @Override
-    public boolean checkIsExist(Resume r) {
-        int idx = getIndex(r.getUuid());
-        return (idx != -1);
-    }
 
     @Override
-    public boolean checkIsExist(String uuid) {
-        int idx = getIndex(uuid);
-        return (idx != -1);
+    public boolean exist(String uuid) {
+        return (getIndex(uuid) != -1);
     }
 }

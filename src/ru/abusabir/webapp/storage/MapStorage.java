@@ -38,19 +38,17 @@ public class MapStorage extends AbstractStorage {
     }
 
     @Override
-    public Collection<Resume> getAllSorted() {
-        //TODO: sort
-        Collection<Resume> list = storage.values();
-        return list;
+    public List<Resume> doGetAll() {
+        return new ArrayList<>(storage.values());
     }
 
     @Override
-    protected boolean checkIsExist(Resume r) {
-        return storage.containsValue(r);
-    }
-
-    @Override
-    protected boolean checkIsExist(String uuid) {
+    protected boolean exist(String uuid) {
         return storage.containsKey(uuid);
+    }
+
+    @Override
+    public int size() {
+        return storage.size();
     }
 }
