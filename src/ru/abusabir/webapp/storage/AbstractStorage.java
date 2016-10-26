@@ -60,7 +60,12 @@ abstract public class AbstractStorage implements IStorage {
     public Collection<Resume> getAllSorted() {
         logger.info("getAllSorted");
         List<Resume> list = doGetAll();
-        Collections.sort(list);
+        Collections.sort(list, (Resume o1, Resume o2) -> {
+                int cmp = o1.getFullName().compareTo(o2.getFullName());
+                if(cmp != 0) return cmp;
+                return o1.getUuid().compareTo(o2.getUuid());
+            });
+
         return list;
     }
 

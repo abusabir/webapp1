@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import ru.abusabir.webapp.WebAppException;
-import ru.abusabir.webapp.model.Contact;
 import ru.abusabir.webapp.model.ContactType;
 import ru.abusabir.webapp.model.Resume;
 
@@ -22,12 +21,12 @@ abstract public class AbstractStorageTest {
     @Before
     public void before() {
         R1 = new Resume("Name1", "loc1");
-        R1.addContact(new Contact(ContactType.MAIL, "mail@ya.ru"));
-        R1.addContact(new Contact(ContactType.PHONE, "111222333"));
+        R1.addContact(ContactType.MAIL, "mail@ya.ru");
+        R1.addContact(ContactType.PHONE, "111222333");
 
         R2 = new Resume("Name2", "loc2");
-        R2.addContact(new Contact(ContactType.SKYPE, "mail123"));
-        R2.addContact(new Contact(ContactType.PHONE, "333444555"));
+        R2.addContact(ContactType.SKYPE, "mail123");
+        R2.addContact(ContactType.PHONE, "333444555");
 
         R3 = new Resume("Name3", null);
 
@@ -47,7 +46,7 @@ abstract public class AbstractStorageTest {
     @Test
     public void testSave() throws Exception {
         Resume r = new Resume("Name", "loc");
-        r.addContact(new Contact(ContactType.HOME_PHONE, "345345"));
+        r.addContact(ContactType.HOME_PHONE, "345345");
         storage.save(r);
         Assert.assertNotNull(storage.load(r.getUuid()));
     }
@@ -97,7 +96,12 @@ abstract public class AbstractStorageTest {
     @Test
     public void testGetAllSorted() throws Exception {
         List<Resume> list = Arrays.asList(R1, R2, R3);
-        Collections.sort(list);
+        Collections.sort(list, (Resume o1, Resume o2) -> {
+                int cmp = o1.getFullName().compareTo(o2.getFullName());
+                if(cmp != 0) return cmp;
+                return o1.getUuid().compareTo(o2.getUuid());
+        });
+
         Assert.assertEquals(list, storage.getAllSorted());
     }
 
